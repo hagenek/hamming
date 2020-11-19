@@ -1,15 +1,8 @@
-const _ = require('rambda')
-
 const numTo8bit = num => {
     const initialBit = "0" + num.toString(2).slice(-8)
     if (initialBit.length === 7) return "0" + initialBit
     else return initialBit
 } 
-
-const charToAscii = character => character.charCodeAt(0);
-
-/* console.log(numTo8bit(charToAscii('T')))
-console.log(charToAscii("T")); */
 
 const correctBitError = (tripleDigit) => {
     let zeroes = 0;
@@ -23,8 +16,6 @@ const correctBitError = (tripleDigit) => {
     if (zeroes > ones) return "0"
     else return "1"
 }
-
-console.log(correctBitError("100"))
 
 const encode = text => {
   return text.split("")
