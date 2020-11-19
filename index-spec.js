@@ -5,7 +5,7 @@ chai.config.truncateThreshold = 0;
 const { encode, decode } = require('./index');
 
 describe("Test encode function", function() {
-  it.only("Should work with short word", function() {
+  it("Should work with short word", function() {
     assert.deepEqual(encode("hey"), "000111111000111000000000000111111000000111000111000111111111111000000111");
   });
   it("Should work with long word", function() {

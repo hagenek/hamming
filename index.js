@@ -1,17 +1,27 @@
 const _ = require('rambda')
 
-function dec2bin(dec){
-    return (dec >>> 0).toString(2);
+const numTo8bit = num => {
+    const initialBit = "0" + num.toString(2).slice(-8)
+    if (initialBit.length === 7) return "0" + initialBit
+    else return initialBit
+} 
+
+const charToAscii = character => character.charCodeAt(0);
+
+const stringToArrayOfAscii = text => {
+    const array = text.split("")
 }
 
-const numTo8bit = (num) => "00000000"+num.toString(2).slice(-8);
+console.log(numTo8bit(charToAscii('T')))
+console.log(charToAscii("T"));
 
-console.log(numTo8bit(101));
-
-const encode = (text) => {
-    // Converting to ASCII
-  const bits = text.split("").map(s => dec2bin(s.charCodeAt(0)).repeat(3)).join("");
-    return bits;
+const encode = text => {
+  return text.split("")
+    .map(s => numTo8bit(s.charCodeAt(0)).split(""))
+    .join(",")
+    .split(",")
+    .map(s => s.repeat(3))
+    .join("");
 }
 
 const decode = (bits) => {
