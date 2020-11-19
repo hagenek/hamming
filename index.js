@@ -10,12 +10,6 @@ const correctBitError = tripleDigit => [...tripleDigit]
     ? "1"
     : "0"
 
-
-console.log(correctBitError("101"))
-console.log(correctBitError("001"))
-console.log(correctBitError("100"))
-console.log(correctBitError("110"))
-
 const encode = text => [...text]
     .map(s => numTo8bit(s.charCodeAt(0)).split(""))
     .join(",")
