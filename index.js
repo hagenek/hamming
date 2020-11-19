@@ -1,10 +1,11 @@
 const numTo8bit = num => {
     const initialBit = "0" + num.toString(2).slice(-8)
-    if (initialBit.length === 7) return "0" + initialBit
-    else return initialBit
-} 
+    return (initialBit.length === 7) 
+      ? "0" + initialBit
+      : initialBit
+  } 
 
-const correctBitError = (tripleDigit) => {
+const correctBitError = tripleDigit => {
     let zeroes = 0;
     let ones = 0;
 
@@ -13,8 +14,9 @@ const correctBitError = (tripleDigit) => {
         else ones++
     })
 
-    if (zeroes > ones) return "0"
-    else return "1"
+    return (zeroes > ones)
+      ? "0"
+      : "1"
 }
 
 const encode = text => {
@@ -37,7 +39,5 @@ const decode = (bits) => {
                         .join("")
     return newEight;
 }
-
-
 
 module.exports = { encode, decode }
