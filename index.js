@@ -19,25 +19,21 @@ const correctBitError = tripleDigit => {
       : "1"
 }
 
-const encode = text => {
-  return text.split("")
+const encode = text => [...text]
     .map(s => numTo8bit(s.charCodeAt(0)).split(""))
     .join(",")
     .split(",")
     .map(s => s.repeat(3))
     .join("");
-}
 
-const decode = (bits) => {
-    const newBits = bits.toString().match(/.{1,3}/g)
+
+const decode = (bits) => bits
+    .toString()
+    .match(/.{1,3}/g)
     .map(s => correctBitError(s))
-
-    const newEight = newBits
-                        .join("")
-                        .match(/.{1,8}/g)
-                        .map(s => String.fromCharCode(parseInt(s,2).toString(10)))
-                        .join("")
-    return newEight;
-}
+    .join("")
+    .match(/.{1,8}/g)
+    .map(s => String.fromCharCode(parseInt(s,2).toString(10)))
+    .join("")
 
 module.exports = { encode, decode }
