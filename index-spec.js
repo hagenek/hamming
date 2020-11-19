@@ -19,7 +19,7 @@ describe("Test encode function", function() {
   });
 });
 
-describe ("Test decode function", function() {
+describe("Test decode function", function() {
   it("Should work with short word", function() {
     assert.deepEqual(decode("100111111000111001000010000111111000000111001111000111110110111000010111"), "hey");
   });

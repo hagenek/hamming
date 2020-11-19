@@ -8,12 +8,23 @@ const numTo8bit = num => {
 
 const charToAscii = character => character.charCodeAt(0);
 
-const stringToArrayOfAscii = text => {
-    const array = text.split("")
+/* console.log(numTo8bit(charToAscii('T')))
+console.log(charToAscii("T")); */
+
+const correctBitError = (tripleDigit) => {
+    let zeroes = 0;
+    let ones = 0;
+
+    tripleDigit.split("").forEach(d => {
+        if (d === "0") zeroes++ 
+        else ones++
+    })
+
+    if (zeroes > ones) return "0"
+    else return "1"
 }
 
-console.log(numTo8bit(charToAscii('T')))
-console.log(charToAscii("T"));
+console.log(correctBitError("100"))
 
 const encode = text => {
   return text.split("")
@@ -25,7 +36,17 @@ const encode = text => {
 }
 
 const decode = (bits) => {
-    return text
+    const newBits = bits.toString().match(/.{1,3}/g)
+    .map(s => correctBitError(s))
+
+    const newEight = newBits
+                        .join("")
+                        .match(/.{1,8}/g)
+                        .map(s => String.fromCharCode(parseInt(s,2).toString(10)))
+                        .join("")
+    return newEight;
 }
+
+
 
 module.exports = { encode, decode }
